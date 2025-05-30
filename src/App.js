@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './components/Login';
+import Books from './components/Books';
+import Navbar from './components/Navbar';
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setToken(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {token && <Navbar token={token} onLogout={handleLogout} />}
+      <Routes>
+        <Route path="/" element={<Navigate to={token ? "/books" : "/login"} />} />
+        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/books" element={token ? <Books onLogout={handleLogout} /> : <Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
 
