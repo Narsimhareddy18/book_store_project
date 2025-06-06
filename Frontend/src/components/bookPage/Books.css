@@ -1,0 +1,45 @@
+.table-wrapper {
+  padding: 30px;
+  background: #f4f4f4;
+  min-height: 100vh;
+}
+
+.table-toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.table-toolbar input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.export-btn,
+.delete-btn,
+.edit-btn,
+.delete-selected-btn {
+  padding: 7px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.export-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.delete-btn,
+.delete-selected-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+  margin-right: 5px;
+}
